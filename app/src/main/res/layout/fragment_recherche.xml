@@ -36,6 +36,7 @@
                 android:textColorHint="@color/colorText"
                 android:background="@drawable/editback"
                 android:textColor="#555555"
+                android:singleLine="true"
                 android:textSize="14sp" />
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/btnRecherche_rec"

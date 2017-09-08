@@ -12,15 +12,18 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.raoelson.fgu.Activity.AnnuaireActivity;
 import com.example.raoelson.fgu.Activity.MapsActivity;
@@ -30,24 +33,28 @@ import com.example.raoelson.fgu.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by Raoelson on 25/08/2017.
  */
 
 public class RechercheFragment extends Fragment {
     String action = "";
-    ImageView btnShow,btnRecherche;
+    ImageView btnShow, btnRecherche;
     boolean stringShow = false;
     LinearLayout linearRecherche;
     RadioGroup radioGroup;
     EditText EditQuery;
     RadioButton radioButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recherche, container, false);
         setUpRecyclerView(v);
         return v;
     }
+
     private void setUpRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         btnShow = (ImageView) v.findViewById(R.id.btnShow);
@@ -63,16 +70,16 @@ public class RechercheFragment extends Fragment {
             @Override
             public void onClick(int position) {
                 if (position == 0) {
-                   action = "avocat";
+                    action = "avocat";
                 } else if (position == 1) {
                     action = "banque";
-                }else if (position == 2) {
+                } else if (position == 2) {
                     action = "expert comptable";
-                }else if (position == 3) {
+                } else if (position == 3) {
                     action = "notaire";
-                }else if (position == 4) {
+                } else if (position == 4) {
                     action = "communication";
-                }else{
+                } else {
                     action = "assurance";
                 }
 
@@ -82,7 +89,7 @@ public class RechercheFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         Intent intent = new Intent(getContext(), MapsActivity.class);
-                        intent.putExtra("search",action);
+                        intent.putExtra("search", action);
                         startActivity(intent);
                         getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                     }
@@ -92,7 +99,7 @@ public class RechercheFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         Intent intent = new Intent(getContext(), AnnuaireActivity.class);
-                        intent.putExtra("search",action);
+                        intent.putExtra("search", action);
                         startActivity(intent);
                         getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 
@@ -109,11 +116,11 @@ public class RechercheFragment extends Fragment {
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(stringShow){
+                if (stringShow) {
                     btnShow.setBackgroundResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
                     stringShow = false;
                     linearRecherche.setVisibility(View.GONE);
-                }else{
+                } else {
                     btnShow.setBackgroundResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
                     stringShow = true;
                     linearRecherche.setVisibility(View.VISIBLE);
@@ -155,7 +162,35 @@ public class RechercheFragment extends Fragment {
                 recherche();
             }
         });
+
+        EditQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    Log.i(TAG, "Enter pressed");
+                }
+                return false;
+            }
+        });
+
+
+        EditQuery.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN
+                        && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    Log.i("test", "captured");
+                    return false;
+                } else if (event.getAction() == KeyEvent.ACTION_DOWN
+                        && event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                    Log.i("test", "Back event");
+
+                }
+                return false;
+            }
+        });
+
     }
+
     private List<String> MenuStrings() {
         List<String> menuList = new ArrayList<>();
         menuList.add("Avocat");
@@ -166,23 +201,25 @@ public class RechercheFragment extends Fragment {
         menuList.add("Assurance");
         return menuList;
     }
-    public void recherche(){
+
+    public void recherche() {
         fermeture();
         int position = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) radioGroup.findViewById(position);
-        if(radioButton.getText().toString().equalsIgnoreCase("Listes")){
+        if (radioButton.getText().toString().equalsIgnoreCase("Listes")) {
             Intent intent = new Intent(getContext(), AnnuaireActivity.class);
-            intent.putExtra("search",EditQuery.getText().toString());
+            intent.putExtra("search", EditQuery.getText().toString());
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-        }else{
+        } else {
             Intent intent = new Intent(getContext(), MapsActivity.class);
-            intent.putExtra("search",EditQuery.getText().toString());
+            intent.putExtra("search", EditQuery.getText().toString());
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
     }
-    public void fermeture(){
+
+    public void fermeture() {
         btnShow.setBackgroundResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
         stringShow = false;
         linearRecherche.setVisibility(View.GONE);
