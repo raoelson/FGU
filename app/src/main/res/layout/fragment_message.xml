@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dip">
+            <TextView
+                android:id="@+id/txtPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="De"
+                android:textColor="@color/colorText"
+                android:textSize="12dp" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <EditText
+                    android:id="@+id/EditDestinateur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="xxx@domaine.com"
+                    android:inputType="text"
+                    android:textColor="@color/colorText"
+                    android:textSize="12dp" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dip">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="À"
+                android:textColor="@color/colorText"
+                android:textSize="12dp" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <EditText
+                    android:id="@+id/EditRecepteur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="xxx@domaine.com"
+                    android:inputType="text"
+                    android:textColor="@color/colorText"
+                    android:textSize="12dp" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/EditObject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Object"
+                android:inputType="text"
+                android:textColor="@color/colorText"
+                android:textSize="12dp" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/EditMessage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:hint="Rédigez ici votre message"
+                android:gravity="top"
+                android:fitsSystemWindows="true"
+                android:breakStrategy="balanced"
+                android:inputType="textMultiLine"
+                android:textColor="@color/colorText"
+                android:textSize="12dp" />
+        </android.support.design.widget.TextInputLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="4dp"
+            android:id="@+id/btnEnvoye"
+            android:paddingLeft="70dp"
+            android:paddingRight="70dp"
+            android:text="Envoyer"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:background="#efeff2">
+
+    <LinearLayout
+        android:id="@+id/liner"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:weightSum="1">
+        <ImageView android:src="@mipmap/logosite"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
+        <!--  Email Label -->
+        <!--<android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp">-->
+            <EditText android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/colorText"
+                android:background="@drawable/rounded_edit"
+                android:drawableLeft="@android:drawable/sym_action_email"
+                android:drawableTint="@color/colorPrimary"
+                android:drawablePadding="5dp"
+                android:textSize="12dp"
+                android:inputType="textEmailAddress"
+                android:hint="exemple@domaine.com"
+                android:layout_weight="0.08" />
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <!--  Password Label -->
+        <!--<android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">-->
+
+            <EditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_edit"
+                android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+                android:drawablePadding="9dp"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Mot de passe"
+                android:inputType="textPassword"
+                android:textColor="@color/colorText"
+                android:textSize="12dp" />
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <LinearLayout android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:gravity="center">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_login"
+                android:layout_width="130dp"
+                android:textColor="@color/colorActive"
+                android:background="@drawable/rounded_cornerlogin"
+                android:layout_height="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
+                android:text="Connexion"/>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_inscription"
+                android:layout_width="130dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#00afec"
+                android:background="@drawable/rounded_cornerbtnlogin"
+                android:layout_height="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
+                android:text="inscription"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

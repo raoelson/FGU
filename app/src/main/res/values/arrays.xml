@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filtre_zone">
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>100</item>
+        <item>250</item>
+        <item>500</item>
+        <item>1000</item>
+    </string-array>
+    <string-array name="filtre_etablissement">
+        <item>Assurance</item>
+        <item>Banque</item>
+        <item>Expert comptable</item>
+        <item>Concessionnaire</item>
+        <item>Questionnaire en patrimoine</item>
+        <item>Communication</item>
+    </string-array>
+    <string-array name="civile">
+        <item>Monsieur</item>
+        <item>Madame</item>
+    </string-array>
+</resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="60dp"
+    android:orientation="vertical"
+    tools:context=".Activity.MapsActivity">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_cornerbtn"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:id="@+id/llAddComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:elevation="8dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp">
+
+            <EditText
+                android:id="@+id/EditQuery_"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/editback"
+                android:hint="Essayez Avocat,Banque,Notaire,etc "
+                android:paddingLeft="5dp"
+                android:textColor="#555555"
+                android:textColorHint="@color/colorText"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/btnRecherche_"
+                style="@style/btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/ic_search_black_24dp" />
+            <!--<android.support.v7.widget.AppCompatImageView
+                android:id="@+id/btnShow"
+                style="@style/btn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/ic_keyboard_arrow_down_black_24dp"
+                />-->
+            <!--android:background=""-->
+        </LinearLayout>
+
+        <include layout="@layout/layout_recherche" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtCount"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/layout"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/colorText"
+        android:textSize="14dp"
+        android:textStyle="italic|bold" />
+
+    <com.example.raoelson.fgu.Outils.MapWrapperLayout
+        android:id="@+id/map_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            tools:context=".Activity.MapsActivity" />
+    </com.example.raoelson.fgu.Outils.MapWrapperLayout>
+</LinearLayout>
+

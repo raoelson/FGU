@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">FGU</string>
+    <string name="title_activity_list_contact">Map</string>
+    <string name="title_activity_maps">Map</string>
+
+
+    <string name="permission_rationale_location">Autorisez votre appareil à activer la location,qui utilise le service de localisation</string>
+    <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
+    <string name="permission_required_toast">Location permission is required for this demo.</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="accept">OK</string>
+    <string name="refuser">ANNULER</string>
+    <string name="message">Voulez-vous afficher</string>
+    <string name="carte">CARTE</string>
+    <string name="liste">LISTE</string>
+    <string name="txt">Lorem ipsum dolor sit amet, a imperdiet ullamcorper vitae pellentesque donec vel, mauris ante eget id convallis sollicitudin etiam, sollicitudin mi nunc lectus imperdiet. Vitae sit amet quam phasellus mus, maecenas vestibulum cras ac ultrices amet, vulputate praesent, aliquam id massa semper eros commodo, sed duis pellentesque ante mauris. Neque eu, lacus a vehicula aenean eu. Augue mauris eu mi.
+        Sit vivamus suspendisse, eros gravida in pede vestibulum. Nec at primis pulvinar, ipsum interdum ac donec dolor</string>
+
+</resources>
