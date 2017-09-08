@@ -55,6 +55,14 @@ public class LoginActivity extends AppCompatActivity{
         _emailText  = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
         _emailText.setText(sharedpreferences.getString("email",null));
+        _passwordText.setText(sharedpreferences.getString("motdepasse",null));
+        if(!_emailText.getText().toString().equalsIgnoreCase("") &&
+                !_passwordText.getText().toString().equalsIgnoreCase("")){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(intent, REQUEST_SIGNUP);
+            finish();
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        }
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -134,9 +142,11 @@ public class LoginActivity extends AppCompatActivity{
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.remove("email");
                         editor.remove("idUser");
+                        editor.remove("motdepasse");
                         editor.apply();
                         editor.putString("email",_emailText.getText().toString());
                         editor.putString("idUser",""+userObj.getInt("c_id"));
+                        editor.putString("motdepasse",""+_passwordText.getText().toString());
                         editor.commit();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivityForResult(intent, REQUEST_SIGNUP);

@@ -1,6 +1,7 @@
 package com.example.raoelson.fgu.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class InscriptionActivity extends AppCompatActivity {
     String _prenom = null;
     ApiClient apiClient;
     ProgressBar progressBar;
+    SharedPreferences sharedpreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class InscriptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inscription);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        sharedpreferences = PreferenceManager.getDefaultSharedPreferences(this);
         progressBar = new ProgressBar(this,"France Guichet Unique","Chargement en cours...");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,10 +86,20 @@ public class InscriptionActivity extends AppCompatActivity {
         call.clone().enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
                 try {
                     JSONObject obj = new JSONObject(response.body().toString());
                     if(obj.getBoolean("error") == false){
                         progressBar.Dismiss();
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.remove("email");
+                        editor.remove("idUser");
+                        editor.remove("motdepasse");
+                        editor.apply();
+                        editor.putString("email",_emailText.getText().toString());
+                        editor.putString("idUser",""+obj.getString("message"));
+                        editor.putString("motdepasse",""+_passwordText.getText().toString());
+                        editor.commit();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivityForResult(intent, 101);
                         finish();
@@ -95,7 +108,7 @@ public class InscriptionActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(getApplicationContext(),"Vous avez déjà un compte",Toast.LENGTH_SHORT).show();
                     }
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 /*if(response.body() == -1){

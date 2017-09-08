@@ -59,6 +59,7 @@ public class RechercheFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         btnShow = (ImageView) v.findViewById(R.id.btnShow);
         linearRecherche = (LinearLayout) v.findViewById(R.id.linearRecherche);
+        linearRecherche.setVisibility(View.VISIBLE);
         EditQuery = (EditText) v.findViewById(R.id.EditQuery_rec);
         radioGroup = (RadioGroup) v.findViewById(R.id.groupRadio);
         btnRecherche = (ImageView) v.findViewById(R.id.btnRecherche_rec);
@@ -82,8 +83,8 @@ public class RechercheFragment extends Fragment {
                 } else {
                     action = "assurance";
                 }
-
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                recherche(action);
+                /*AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 dialog.setMessage(getContext().getResources().getString(R.string.message));
                 dialog.setPositiveButton(getContext().getResources().getString(R.string.carte), new DialogInterface.OnClickListener() {
                     @Override
@@ -105,7 +106,7 @@ public class RechercheFragment extends Fragment {
 
                     }
                 });
-                dialog.show();
+                dialog.show();*/
                 /*intent.putExtra("search",action);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);*/
@@ -113,7 +114,7 @@ public class RechercheFragment extends Fragment {
             }
         });
 
-        btnShow.setOnClickListener(new View.OnClickListener() {
+        /*btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (stringShow) {
@@ -126,40 +127,11 @@ public class RechercheFragment extends Fragment {
                     linearRecherche.setVisibility(View.VISIBLE);
                 }
             }
-        });
-
-        TextWatcher fieldValidatorTextWatcher = new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                fermeture();
-                /*if (filterLongEnough()) {
-
-                    btnRecherche.setBackgroundResource(R.drawable.ic_clear_black_24dp);
-                    //AffichageResultat(EditQuery.getText().toString(), recherche);
-                } else {
-
-                    btnRecherche.setBackgroundResource(R.drawable.ic_search_black_24dp);
-                    //AffichageResultat("", recherche);
-                }*/
-            }
-
-            /*private boolean filterLongEnough() {
-                return EditQuery.getText().toString().trim().length() > 0;
-            }*/
-        };
-        EditQuery.addTextChangedListener(fieldValidatorTextWatcher);
+        });*/
         btnRecherche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recherche();
+                recherche(EditQuery.getText().toString());
             }
         });
 
@@ -168,17 +140,20 @@ public class RechercheFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN
                         && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                    Log.i("test", "captured");
+                    EditQuery.setSingleLine(true);
+                    recherche(EditQuery.getText().toString());
                     return false;
-                } else if (event.getAction() == KeyEvent.ACTION_DOWN
-                        && event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                    Log.i("test", "Back event");
-
                 }
                 return false;
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EditQuery.setSingleLine(false);
     }
 
     private List<String> MenuStrings() {
@@ -192,26 +167,20 @@ public class RechercheFragment extends Fragment {
         return menuList;
     }
 
-    public void recherche() {
-        fermeture();
+    public void recherche(String id) {
         int position = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) radioGroup.findViewById(position);
         if (radioButton.getText().toString().equalsIgnoreCase("Listes")) {
             Intent intent = new Intent(getContext(), AnnuaireActivity.class);
-            intent.putExtra("search", EditQuery.getText().toString());
+            intent.putExtra("search", id);
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         } else {
             Intent intent = new Intent(getContext(), MapsActivity.class);
-            intent.putExtra("search", EditQuery.getText().toString());
+            intent.putExtra("search", id);
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
     }
 
-    public void fermeture() {
-        btnShow.setBackgroundResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
-        stringShow = false;
-        linearRecherche.setVisibility(View.GONE);
-    }
 }

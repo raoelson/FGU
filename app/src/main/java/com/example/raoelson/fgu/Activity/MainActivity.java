@@ -1,17 +1,22 @@
 package com.example.raoelson.fgu.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.raoelson.fgu.Fragment.AcceuilFragment;
+import com.example.raoelson.fgu.Fragment.CompteFragment;
 import com.example.raoelson.fgu.Fragment.FAIFragment;
 import com.example.raoelson.fgu.Fragment.RechercheFragment;
 import com.example.raoelson.fgu.R;
@@ -34,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.ic_compte_black_24dp, R.drawable.deconxion_circle};
         int[] color = {ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorPrimary)};
 
-
         bottomNavigationView.isColoredBackground(false);
         bottomNavigationView.setItemActiveColorWithoutColoredBackground(ContextCompat.getColor(this, R.color.colorPrimary));
 
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 ("Message", color[1], image[3]);
         BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
                 ("FAQ", color[1], image[2]);
+        BottomNavigationItem bottomNavigationItem4 = new BottomNavigationItem
+                ("Compte", color[1], image[4]);
        /* BottomNavigationItem bottomNavigationItem4 = new BottomNavigationItem
                 ("Compte", color[1], image[4]);*/
         /*BottomNavigationItem bottomNavigationItem4 = new BottomNavigationItem
@@ -55,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.addTab(bottomNavigationItem1);
         bottomNavigationView.addTab(bottomNavigationItem2);
         bottomNavigationView.addTab(bottomNavigationItem3);
-        //bottomNavigationView.addTab(bottomNavigationItem4);
+        bottomNavigationView.addTab(bottomNavigationItem4);
 
         //initialisation fragmemnt par défaut
         Fragment fragment = new AcceuilFragment();
@@ -66,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
             @Override
             public void onNavigationItemClick(int index) {
-
+                Log.d("test",""+index);
                 Fragment fragment;
                 switch (index) {
+
                     case 0:
                         fragment = new AcceuilFragment();
                         this.CallFragment(fragment);
@@ -96,10 +103,8 @@ public class MainActivity extends AppCompatActivity {
                         this.CallFragment(fragment);
                         break;
                     case 4:
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivityForResult(intent, 100);
-                        finish();
-                        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                        fragment = new CompteFragment();
+                        this.CallFragment(fragment);
                         break;
 
                 }
@@ -128,12 +133,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_profil:
+            /*case R.id.action_profil:
                 Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
                 startActivityForResult(intent, 100);
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-                break;
+                break;*/
             case R.id.action_deconnexion:
+                SharedPreferences sharedpreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.remove("motdepasse");
+                editor.apply();
                 startActivityForResult(new
                         Intent(getApplicationContext(), LoginActivity.class), 100);
                 finish();

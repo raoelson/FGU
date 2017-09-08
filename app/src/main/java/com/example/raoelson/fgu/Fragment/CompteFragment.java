@@ -1,14 +1,15 @@
-package com.example.raoelson.fgu.Activity;
+package com.example.raoelson.fgu.Fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,18 +21,15 @@ import com.example.raoelson.fgu.Model.Contact;
 import com.example.raoelson.fgu.Outils.ProgressBar;
 import com.example.raoelson.fgu.R;
 
-import java.util.Iterator;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Raoelson on 03/09/2017.
+ * Created by Raoelson on 08/09/2017.
  */
 
-public class ProfilActivity extends AppCompatActivity {
+public class CompteFragment extends Fragment{
     SharedPreferences sharedpreferences;
     String id;
     ApiClient apiClient;
@@ -42,30 +40,26 @@ public class ProfilActivity extends AppCompatActivity {
     ProgressBar progressBar;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compte);
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-        sharedpreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.activity_compte, container, false);
+
+        sharedpreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         id = sharedpreferences.getString("idUser", null);
-        nom = (EditText) findViewById(R.id.EditNom);
-        prenom = (EditText) findViewById(R.id.EditPrenom);
-        tel = (EditText) findViewById(R.id.EditPhone);
-        adresse = (EditText) findViewById(R.id.EditAdresse);
-        EditConfirme = (EditText) findViewById(R.id.EditConfirme);
-        password = (EditText) findViewById(R.id.EditPassword);
-        email = (EditText) findViewById(R.id.EditEmail);
-        spinnerCivile = (Spinner) findViewById(R.id.spinnerCivile);
-        btn_modifier = (Button) findViewById(R.id.btn_modifier);
-        apiClient = new ApiClient(getApplicationContext());
-        adapter = ArrayAdapter.createFromResource(this,
+        nom = (EditText) v.findViewById(R.id.EditNom);
+        prenom = (EditText) v.findViewById(R.id.EditPrenom);
+        tel = (EditText) v.findViewById(R.id.EditPhone);
+        adresse = (EditText) v.findViewById(R.id.EditAdresse);
+        EditConfirme = (EditText) v.findViewById(R.id.EditConfirme);
+        password = (EditText) v.findViewById(R.id.EditPassword);
+        email = (EditText) v.findViewById(R.id.EditEmail);
+        spinnerCivile = (Spinner) v.findViewById(R.id.spinnerCivile);
+        btn_modifier = (Button) v.findViewById(R.id.btn_modifier);
+        apiClient = new ApiClient(getContext());
+        adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.civile, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCivile.setAdapter(adapter);
-        progressBar = new ProgressBar(this,"France Guichet Unique",
+        progressBar = new ProgressBar(getContext(),"France Guichet Unique",
                 "Chargement en cours...");
         AffichageProfil();
         btn_modifier.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +72,7 @@ public class ProfilActivity extends AppCompatActivity {
             }
         });
 
+        return v;
     }
 
     public void updateCompte(){
@@ -88,7 +83,7 @@ public class ProfilActivity extends AppCompatActivity {
         call.clone().enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(getApplicationContext(),"Votre profil a été bien modifié",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Votre profil a été bien modifié",Toast.LENGTH_SHORT).show();
                 progressBar.Dismiss();
             }
 
@@ -97,23 +92,6 @@ public class ProfilActivity extends AppCompatActivity {
                 progressBar.Dismiss();
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     public void AffichageProfil() {
