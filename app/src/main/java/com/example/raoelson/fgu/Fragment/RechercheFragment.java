@@ -163,16 +163,6 @@ public class RechercheFragment extends Fragment {
             }
         });
 
-        EditQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    Log.i(TAG, "Enter pressed");
-                }
-                return false;
-            }
-        });
-
-
         EditQuery.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         BottomNavigationItem bottomNavigationItem = new BottomNavigationItem
-                ("Acceuil", color[1], image[1]);
+                ("Accueil", color[1], image[1]);
         BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
                 ("Recherche", color[1], image[0]);
         BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
