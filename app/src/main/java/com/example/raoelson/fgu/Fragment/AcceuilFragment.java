@@ -162,7 +162,7 @@ public class AcceuilFragment extends Fragment {
             }
         };
         EditQuery.addTextChangedListener(fieldValidatorTextWatcher);
-        progressBar.Show();
+        //progressBar.Show();
         init();
         return view;
     }

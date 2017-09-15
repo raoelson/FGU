@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FGU</string>
+    <string name="app_name">France Guichet Unique</string>
     <string name="title_activity_list_contact">Map</string>
     <string name="title_activity_maps">Map</string>
 
@@ -16,4 +16,5 @@
     <string name="txt">Lorem ipsum dolor sit amet, a imperdiet ullamcorper vitae pellentesque donec vel, mauris ante eget id convallis sollicitudin etiam, sollicitudin mi nunc lectus imperdiet. Vitae sit amet quam phasellus mus, maecenas vestibulum cras ac ultrices amet, vulputate praesent, aliquam id massa semper eros commodo, sed duis pellentesque ante mauris. Neque eu, lacus a vehicula aenean eu. Augue mauris eu mi.
         Sit vivamus suspendisse, eros gravida in pede vestibulum. Nec at primis pulvinar, ipsum interdum ac donec dolor</string>
 
+    <string name="titre_recherche">Essayez Avocat, Banque, Assurance ...</string>
 </resources>

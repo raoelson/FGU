@@ -44,15 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         BottomNavigationItem bottomNavigationItem = new BottomNavigationItem
-                ("Accueil", color[1], image[1]);
+                ("", color[1], image[1]);
         BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
-                ("Recherche", color[1], image[0]);
+                ("", color[1], image[0]);
         BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
-                ("Message", color[1], image[3]);
+                ("", color[1], image[3]);
         BottomNavigationItem bottomNavigationItem3 = new BottomNavigationItem
-                ("FAQ", color[1], image[2]);
+                ("", color[1], image[2]);
         BottomNavigationItem bottomNavigationItem4 = new BottomNavigationItem
-                ("Compte", color[1], image[4]);
+                ("", color[1], image[4]);
        /* BottomNavigationItem bottomNavigationItem4 = new BottomNavigationItem
                 ("Compte", color[1], image[4]);*/
         /*BottomNavigationItem bottomNavigationItem4 = new BottomNavigationItem
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
             @Override
             public void onNavigationItemClick(int index) {
-                Log.d("test",""+index);
                 Fragment fragment;
                 switch (index) {
 

@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:paddingLeft="5dp"
-                android:hint="Essayez Avocat,Banque,Notaire,etc"
+                android:hint="@string/titre_recherche"
                 android:textColorHint="@color/colorText"
                 android:background="@drawable/editback"
                 android:textColor="#555555"
