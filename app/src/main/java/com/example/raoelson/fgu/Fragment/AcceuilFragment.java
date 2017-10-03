@@ -31,6 +31,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.raoelson.fgu.APiRest.ApiClient;
+import com.example.raoelson.fgu.Activity.LoginActivity;
+import com.example.raoelson.fgu.Activity.MainActivity;
 import com.example.raoelson.fgu.Model.Contact;
 import com.example.raoelson.fgu.Outils.GPSTracker;
 import com.example.raoelson.fgu.Outils.ProgressBar;
@@ -66,6 +68,15 @@ public class AcceuilFragment extends Fragment {
     private GoogleMap mMap;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 101;
     MapView mapView;
+    private static final String activation_ = "active";
+
+    public static AcceuilFragment newInstance(String activation) {
+        AcceuilFragment fragment = new AcceuilFragment();
+        Bundle mBundle = new Bundle();
+        mBundle.putString(activation_, activation);
+        fragment.setArguments(mBundle);
+        return fragment;
+    }
 
     private TextView infoTitle;
     private TextView infoSnippet;
@@ -93,17 +104,24 @@ public class AcceuilFragment extends Fragment {
 
     ApiClient apiClient;
 
-    LatLng latLng;
+
 
     EditText EditQuery;
 
     private OnInfoWindowElemTouchListener infoButtonListener;
     LinearLayout layout1;
     View view = null;
+    Integer  test = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        Bundle arguments = getArguments();
+        gpsTracker = new GPSTracker(getContext());
+        if(arguments != null){
+            test = Integer.parseInt(getArguments().getString(activation_));
+        }else{
+            test = 1;
+        }
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_acceuil, null);
         } else {
@@ -129,7 +147,7 @@ public class AcceuilFragment extends Fragment {
         btnCommunication_ = (Button) view.findViewById(R.id.btnCommunication_);
         btnNotaire_ = (Button) view.findViewById(R.id.btnNotaire_);
         bntRecherche();
-        gpsTracker = new GPSTracker(getContext());
+
         apiClient = new ApiClient(getContext());
         progressBar = new ProgressBar(getContext(), "France Guichet unique", "Chargment en cours...");
 
@@ -170,6 +188,7 @@ public class AcceuilFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
 
     }
 
@@ -222,10 +241,7 @@ public class AcceuilFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
+
 
     public static int getPixelsFromDp(Context context, float dp) {
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -252,6 +268,7 @@ public class AcceuilFragment extends Fragment {
         }
 
         mapView.getMapAsync(new OnMapReadyCallback() {
+            LatLng latLng;
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
@@ -259,7 +276,6 @@ public class AcceuilFragment extends Fragment {
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     mMap.setMyLocationEnabled(true);
                     Configuration();
-
 
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -270,9 +286,10 @@ public class AcceuilFragment extends Fragment {
                 if (mLocation == null) {
                     latLng = new LatLng(46.214306, 1.857436);
                 } else {
+
                     latLng = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
                 }
-
+                Log.d("test"," "+latLng.latitude +" "+ latLng.longitude);
                 mapWrapperLayout.init(googleMap, getPixelsFromDp(getContext(), 39 + 20));
                 infoButtonListener = new OnInfoWindowElemTouchListener(btnAppel, getResources()
                         .getDrawable(R.color.colorActive),
@@ -482,6 +499,7 @@ public class AcceuilFragment extends Fragment {
                     if (ContextCompat.checkSelfPermission(getActivity(),
                             Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         mMap.setMyLocationEnabled(true);
+                        test  = 4;
                         Configuration();
                     }
 

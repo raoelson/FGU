@@ -162,7 +162,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="24dp"
                 android:padding="12dp"
-                android:text="Modifier"
+                android:text="Activer"
                 android:textColor="@color/colorText"
                 android:theme="@style/MyButton" />
         </LinearLayout>

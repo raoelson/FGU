@@ -26,6 +26,10 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,30 +60,41 @@ public class LoginActivity extends AppCompatActivity{
         _passwordText = (EditText) findViewById(R.id.input_password);
         _emailText.setText(sharedpreferences.getString("email",null));
         _passwordText.setText(sharedpreferences.getString("motdepasse",null));
-        if(!_emailText.getText().toString().equalsIgnoreCase("") &&
-                !_passwordText.getText().toString().equalsIgnoreCase("")){
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivityForResult(intent, REQUEST_SIGNUP);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        if(dateFormat.format(date).equalsIgnoreCase("2017/09/23")){
+            Intent intent = new Intent(this,ExpireActivity.class);
+            startActivity(intent);
             finish();
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-        }
+        }else {
 
-        _loginButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
-
-        inscriptionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), InscriptionActivity.class);
+            if (!_emailText.getText().toString().equalsIgnoreCase("") &&
+                    !_passwordText.getText().toString().equalsIgnoreCase("")) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("activation","1");
                 startActivityForResult(intent, REQUEST_SIGNUP);
+                finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
-        });
+
+            _loginButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    login();
+                }
+            });
+
+            inscriptionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), InscriptionActivity.class);
+                    startActivityForResult(intent, REQUEST_SIGNUP);
+                    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                }
+            });
+        }
     }
     public void login() {
         if (!validate()) {
@@ -149,6 +164,7 @@ public class LoginActivity extends AppCompatActivity{
                         editor.putString("motdepasse",""+_passwordText.getText().toString());
                         editor.commit();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("activation","1");
                         startActivityForResult(intent, REQUEST_SIGNUP);
                         finish();
                         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
@@ -193,5 +209,7 @@ public class LoginActivity extends AppCompatActivity{
 
         return valid;
     }
+
+
 
 }

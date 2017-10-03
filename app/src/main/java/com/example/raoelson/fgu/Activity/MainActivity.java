@@ -26,6 +26,7 @@ import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItem
 
 public class MainActivity extends AppCompatActivity {
 
+
     private BottomNavigationView bottomNavigationView;
 
     //private Button button;
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         int[] image = {R.drawable.ic_geo_black_24dp, R.drawable.ic_annuaire_black_24dp, R.drawable.faq_circle,
                 R.drawable.ic_compte_black_24dp, R.drawable.deconxion_circle};
@@ -64,7 +64,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.addTab(bottomNavigationItem4);
 
         //initialisation fragmemnt par défaut
-        Fragment fragment = new AcceuilFragment();
+
+        Bundle bundle = getIntent().getExtras();
+        String activation = "1";
+        if(bundle != null){
+            activation = getIntent().getStringExtra("activation");
+        }
+        Fragment fragment = new AcceuilFragment().newInstance(activation);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();
@@ -119,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override

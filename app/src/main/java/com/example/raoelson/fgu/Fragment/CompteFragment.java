@@ -61,14 +61,23 @@ public class CompteFragment extends Fragment{
         spinnerCivile.setAdapter(adapter);
         progressBar = new ProgressBar(getContext(),"France Guichet Unique",
                 "Chargement en cours...");
+        EnableText(false);
         AffichageProfil();
         btn_modifier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validate()) {
-                    return;
+                if(btn_modifier.getText().toString().equalsIgnoreCase("activer")){
+                    EnableText(true);
+                    btn_modifier.setText("Modifier");
+                }else{
+                    if (!validate()) {
+                        return;
+                    }
+                    updateCompte();
+                    EnableText(false);
+                    btn_modifier.setText("Activer");
                 }
-                updateCompte();
+
             }
         });
 
@@ -170,5 +179,23 @@ public class CompteFragment extends Fragment{
         }
 
         return valid;
+    }
+
+    public void EnableText(boolean rep) {
+        nom.setEnabled(rep);
+        prenom.setEnabled(rep);
+        email.setEnabled(rep);
+        tel.setEnabled(rep);
+        EditConfirme.setEnabled(rep);
+        password.setEnabled(rep);
+        //info.setText(contact.getC_description());
+        adresse.setEnabled(rep);
+        /*if (!contact.getC_civilite().equals(null)) {
+            int position = 0;
+            if (contact.getC_civilite().equalsIgnoreCase("madame")) {
+                position = 1;
+            }
+            spinnerCivile.setSelection(position);
+        }*/
     }
 }
