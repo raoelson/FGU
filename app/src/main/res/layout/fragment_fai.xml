@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:id="@+id/column1"
@@ -87,15 +88,61 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         app:ael_interpolator="bounce"
-        app:ael_orientation="vertical">
+        app:ael_orientation="vertical"
 
+        android:gravity="center">
         <TextView
             android:id="@+id/one"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText" />
+        <TextView
+            android:id="@+id/two"
+            android:layout_below="@+id/one"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txt"
+
+            android:gravity="center"
+            android:text="- Simplifier vos démarches"
             android:textColor="@color/colorText" />
+        <TextView
+            android:id="@+id/three"
+            android:layout_below="@+id/two"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="- Développer votre potentiel"
+            android:textColor="@color/colorText" />
+        <TextView
+            android:id="@+id/four"
+            android:layout_below="@+id/three"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="- Optimiser votre entreprise"
+            android:textColor="@color/colorText" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_below="@+id/four"
+            android:id="@+id/btncontact"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorActive"
+            android:background="@drawable/rounded_corner"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:text="Nous Contacter"/>
 
         <!--<TextView
             android:id="@+id/two"

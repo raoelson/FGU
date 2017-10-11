@@ -8,7 +8,7 @@
     card_view:cardUseCompatPadding="true" >
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="143dp"
         android:layout_marginTop="5dp">
 
         <LinearLayout
@@ -72,7 +72,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dip"
+                android:padding="0dip"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_alignParentLeft="true"
@@ -80,16 +81,48 @@
 
                 <ImageButton
                     android:id="@+id/btnAppel"
-                    android:layout_width="50dip"
-                    android:layout_height="24dp"
+                    android:layout_width="55dip"
+                    android:layout_height="42dp"
                     android:background="@color/colorActive"
-                    android:src="@drawable/phone"/>
+                    android:src="@drawable/phones"/>
                 <ImageButton
                     android:id="@+id/btnMessage"
-                    android:layout_width="50dip"
-                    android:layout_height="24dp"
+                    android:layout_width="55dip"
+                    android:layout_height="40dp"
                     android:background="@color/colorActive"
-                    android:src="@drawable/email"/>
+                    android:src="@drawable/emails"/>
+                <ImageButton
+                    android:id="@+id/btnItinaire"
+                    android:layout_width="55dip"
+                    android:layout_height="40dp"
+                    android:background="@color/colorActive"
+                    android:src="@drawable/distance"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="5dip">
+                <TextView
+                    android:id="@+id/txtLongitude"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textColor="@color/colorText"
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/txtLatitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorText"
+                    android:textSize="12dp" />
+
             </LinearLayout>
 
         </LinearLayout>

@@ -37,22 +37,9 @@ import android.widget.Toast;
 import com.example.raoelson.fgu.APiRest.ApiClient;
 import com.example.raoelson.fgu.Adapter.AnnuaireAdapter;
 import com.example.raoelson.fgu.Model.Contact;
-import com.example.raoelson.fgu.Outils.PermissionUtils;
 import com.example.raoelson.fgu.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import retrofit2.Call;

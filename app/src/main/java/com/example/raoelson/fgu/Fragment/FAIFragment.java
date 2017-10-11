@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.raoelson.fgu.R;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
@@ -23,22 +27,29 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 public class FAIFragment extends Fragment implements View.OnClickListener{
 
-    private Button mExpandButton;
-    private Button mMoveChildButton;
-    private Button mMoveChildButton2;
-    private ExpandableRelativeLayout mExpandLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fai, container, false);
-        mExpandButton = (Button) v.findViewById(R.id.expandButton);
-        mMoveChildButton = (Button) v.findViewById(R.id.moveChildButton);
-        mMoveChildButton2 = (Button) v.findViewById(R.id.moveChildButton2);
-        mExpandLayout = (ExpandableRelativeLayout) v.findViewById(R.id.expandableLayout);
-        mExpandButton.setOnClickListener(this);
-        mMoveChildButton.setOnClickListener(this);
-        mMoveChildButton2.setOnClickListener(this);
-
+        TextView textView = (TextView) v.findViewById(R.id.one);
+        textView.setText(Html.fromHtml("<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;France Guichet Unique</b> est un organisme spécialisé dans l'accompagnement et le conseil des entrepreneurs.\n" +
+                "        Grâce à 20 d'expérience et à un réseau national de spécialistes nous pouvons :"));
+        Button button = (Button) v.findViewById(R.id.btncontact);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL, new String[]{"contact@franceguichetunique.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "");
+                i.putExtra(Intent.EXTRA_TEXT, "");
+                try {
+                    startActivity(Intent.createChooser(i, "Envoie du mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(getContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return v;
     }
 

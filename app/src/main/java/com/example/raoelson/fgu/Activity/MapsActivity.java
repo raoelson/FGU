@@ -7,11 +7,13 @@ package com.example.raoelson.fgu.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +64,7 @@ public class MapsActivity extends AppCompatActivity implements
     TextView txtTaffe;
     TextView txtPhone;
     TextView txtEmail;
-    ImageButton btnAppel, btnMessage;
+    ImageButton btnAppel, btnMessage,btnItinaire;
     private OnInfoWindowElemTouchListener infoButtonListener;
 
     @Override
@@ -83,10 +85,22 @@ public class MapsActivity extends AppCompatActivity implements
         txtEmail = (TextView) infoWindow.findViewById(R.id.txtemail);
         btnAppel = (ImageButton) infoWindow.findViewById(R.id.btnAppel);
         btnMessage = (ImageButton) infoWindow.findViewById(R.id.btnMessage);
+        btnItinaire = (ImageButton) infoWindow.findViewById(R.id.btnItinaire);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            //checkLocationPermission();
+        }
+
+        //Check if Google Play Services Available or not
+        /*if (!CheckGooglePlayServices()) {
+            Log.d("onCreate", "Finishing test case since Google Play Services are not available");
+            finish();
+        } else {
+            Log.d("onCreate", "Google Play Services available.");
+        }*/
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -214,6 +228,16 @@ public class MapsActivity extends AppCompatActivity implements
                 }
                 infoButtonListener.setMarker(marker);
 
+                infoButtonListener = new OnInfoWindowElemTouchListener(btnItinaire,
+                        getResources().getDrawable(R.color.colorActive),
+                        getResources().getDrawable(R.color.colorActive)){
+                    @Override
+                    protected void onClickConfirmed(View v, Marker marker) {
+                        Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
+                    }
+                };
+                btnItinaire.setOnTouchListener(infoButtonListener);
+
                 // We must call this to set the current marker and infoWindow references
                 // to the MapWrapperLayout
                 mapWrapperLayout.setMarkerWithInfoWindow(marker, infoWindow);
@@ -280,7 +304,8 @@ public class MapsActivity extends AppCompatActivity implements
                         LatLng coordonnees = new LatLng(contact.getC_latitude(), contact.getC_longitude());
                         markerOptions.position(coordonnees);
                         markerOptions.snippet(reponses);
-                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.placeholder32));
+                        //markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.placeholder32));
+                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                         mMap.addMarker(markerOptions);
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(coordonnees));
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordonnees, 6.5f));
