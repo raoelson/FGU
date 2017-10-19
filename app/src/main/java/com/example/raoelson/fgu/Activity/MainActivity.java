@@ -70,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
         if(bundle != null){
             activation = getIntent().getStringExtra("activation");
         }
-        Fragment fragment = new AcceuilFragment().newInstance(activation);
+        /*Fragment fragment = new AcceuilFragment().newInstance(activation);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, fragment)
-                .commit();
+                .commit();*/
 
         bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
             @Override

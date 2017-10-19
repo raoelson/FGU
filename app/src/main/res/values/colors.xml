@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <!-- <color name="colorPrimary">#F05050</color>
-    <color name="colorPrimaryDark">#F05050</color>-->
+    <!-- <color name="colorPrimary">#F05050</color>
+     <color name="colorPrimaryDark">#F05050</color>-->
     <color name="colorPrimary">#000</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#5F5E5E</color>
     <color name="colorInactive">#e7e6e7</color>
     <color name="colorText">#5F5E5E</color>
     <color name="back">#f7f4f4</color>
+
+    <color name="color_avocat">#74b1f2</color>
+    <color name="color_banque">#7273f2</color>
+    <color name="color_assurance">#ec7070</color>
+    <color name="color_comptable">#b06ff1</color>
+    <color name="color_communication">#f2b171</color>
+    <color name="color_notaire">#70f0f1</color>
 </resources>

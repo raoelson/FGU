@@ -35,7 +35,7 @@
         android:theme="@style/AppTheme"
         >
         <activity
-            android:name=".TestMainActivity"
+            android:name=".Activity.LoginActivity"
             android:theme="@style/AppTheme"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -47,11 +47,11 @@
         </activity>
 
         <!--<activity android:name=".Test.activities.MapViewActivity" />-->
-        <!--<activity
-            android:name=".TestMainActivity"
+        <activity
+            android:name=".Activity.PrincipalActivity"
             android:theme="@style/AppTheme"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>-->
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".test.MapsActivity"
             android:theme="@style/AppTheme"
@@ -82,9 +82,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-
-        <activity
-            android:name=".Activity.ExpireActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"

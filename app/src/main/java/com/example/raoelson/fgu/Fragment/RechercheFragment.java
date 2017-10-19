@@ -41,7 +41,7 @@ import static android.content.ContentValues.TAG;
 
 public class RechercheFragment extends Fragment {
     String action = "";
-    ImageView btnShow, btnRecherche;
+    ImageView  btnRecherche;
     boolean stringShow = false;
     LinearLayout linearRecherche;
     RadioGroup radioGroup;
@@ -57,7 +57,7 @@ public class RechercheFragment extends Fragment {
 
     private void setUpRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        btnShow = (ImageView) v.findViewById(R.id.btnShow);
+        //btnShow = (ImageView) v.findViewById(R.id.btnShow);
         linearRecherche = (LinearLayout) v.findViewById(R.id.linearRecherche);
         linearRecherche.setVisibility(View.VISIBLE);
         EditQuery = (EditText) v.findViewById(R.id.EditQuery_rec);

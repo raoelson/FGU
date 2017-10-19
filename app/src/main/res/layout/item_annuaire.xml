@@ -45,11 +45,63 @@
                 android:text=""
                 android:textColor="@color/colorText"
                 android:textSize="12dp" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="5dip">
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:text="Établissement ouvert:"
+                    android:textColor="@color/colorText"
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/txtOuverture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text=""
+                    android:textColor="@color/colorText"
+                    android:textSize="12dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dip"
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="5dip">
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:text="Fermé: "
+                    android:textColor="@color/colorText"
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/txtFermeture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textColor="@color/colorText"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:id="@+id/linearPhone"
                 android:orientation="horizontal"
                 android:layout_alignParentLeft="true"
                 android:layout_marginRight="5dip">
@@ -67,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text=""
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:textColor="@color/colorText"
                     android:textSize="12dp" />
                 <ImageButton
@@ -76,7 +129,7 @@
                     android:background="@color/colorActive"
                     android:src="@drawable/phones"/>
             </LinearLayout>
-            <LinearLayout android:id="@+id/thumbnail"
+            <LinearLayout android:id="@+id/linearEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="3dip"
@@ -97,6 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text=""
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:textColor="@color/colorText"
                     android:textSize="12dp" />
                 <ImageButton
@@ -126,6 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/colorText"
                     android:textSize="12dp" />

@@ -14,12 +14,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.raoelson.fgu.APiRest.ApiClient;
-import com.example.raoelson.fgu.Outils.Message;
 import com.example.raoelson.fgu.Outils.ProgressBar;
 import com.example.raoelson.fgu.R;
 import com.google.gson.JsonObject;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import retrofit2.Call;
@@ -100,7 +98,7 @@ public class InscriptionActivity extends AppCompatActivity {
                         editor.putString("idUser",""+obj.getString("message"));
                         editor.putString("motdepasse",""+_passwordText.getText().toString());
                         editor.commit();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), PrincipalActivity.class);
                         startActivityForResult(intent, 101);
                         finish();
                         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);

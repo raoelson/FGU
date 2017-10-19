@@ -9,6 +9,7 @@ public class Contact {
     private String c_civilite;
     private String c_nom;
     private String c_prenom;
+    private String c_etablissement;
     private String c_tel;
     private String c_mail;
     private String c_adresse;
@@ -20,8 +21,27 @@ public class Contact {
     private String c_description;
     private String c_profession;
     private String c_type;
+    private String 	c_ouverture;
+    private String 	c_fermeture;
+
 
     public Contact() {
+    }
+
+    public String getC_nom() {
+        return c_nom;
+    }
+
+    public void setC_nom(String c_nom) {
+        this.c_nom = c_nom;
+    }
+
+    public String getC_prenom() {
+        return c_prenom;
+    }
+
+    public void setC_prenom(String c_prenom) {
+        this.c_prenom = c_prenom;
     }
 
     public Integer getC_id() {
@@ -40,20 +60,28 @@ public class Contact {
         this.c_civilite = c_civilite;
     }
 
-    public String getC_nom() {
-        return c_nom;
+    public String getC_ouverture() {
+        return c_ouverture;
     }
 
-    public void setC_nom(String c_nom) {
-        this.c_nom = c_nom;
+    public void setC_ouverture(String c_ouverture) {
+        this.c_ouverture = c_ouverture;
     }
 
-    public String getC_prenom() {
-        return c_prenom;
+    public String getC_fermeture() {
+        return c_fermeture;
     }
 
-    public void setC_prenom(String c_prenom) {
-        this.c_prenom = c_prenom;
+    public void setC_fermeture(String c_fermeture) {
+        this.c_fermeture = c_fermeture;
+    }
+
+    public String getC_etablissement() {
+        return c_etablissement;
+    }
+
+    public void setC_etablissement(String c_etablissement) {
+        this.c_etablissement = c_etablissement;
     }
 
     public String getC_tel() {

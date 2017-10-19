@@ -6,10 +6,12 @@ import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,8 +62,10 @@ public class AnnuaireAdapter extends RecyclerView.Adapter<AnnuaireAdapter.ViewHo
             setUpDisplayName(holder.txtNomPrenom, contact);
             setUpPro(holder.txtTaffe, contact);
             setUpDisplayAdresse(holder.txtAdresse, contact);
-            setUpDisplayPhone(holder.txtPhone, contact);
-            setUpDisplayEmail(holder.txtEmail, contact);
+            setUpDisplayPhone(holder.linearLayoutPhone,holder.txtPhone, contact);
+            setUpDisplayEmail(holder.linearLayoutEmail,holder.txtEmail, contact);
+            setUpDisplayOuverture(holder.txtOuverture, contact);
+            setUpDisplayFermeture(holder.txtFermeture, contact);
             holder.txtADRESSE.setText(Html.fromHtml("<b>Adresse :</b> "));
             holder.txtPHONE.setText(Html.fromHtml("<b>Tel :</b> "));
             holder.txtEMAIL.setText(Html.fromHtml("<b>Email :</b> "));
@@ -105,7 +109,7 @@ public class AnnuaireAdapter extends RecyclerView.Adapter<AnnuaireAdapter.ViewHo
     }
 
     private void setUpDisplayName(TextView tv, Contact contact) {
-        String displayName = String.valueOf(contact.getC_nom()+" "+contact.getC_prenom());
+        String displayName = String.valueOf(contact.getC_etablissement());
         if (!TextUtils.isEmpty(displayName)) {
             tv.setText(displayName);
         }
@@ -128,26 +132,50 @@ public class AnnuaireAdapter extends RecyclerView.Adapter<AnnuaireAdapter.ViewHo
         }
     }
 
-    private void setUpDisplayPhone(TextView tv, Contact contact) {
+    private void setUpDisplayPhone(LinearLayout linearLayout,TextView tv, Contact contact) {
         String displayName = contact.getC_tel();
+        if (displayName == null){
+            linearLayout.setVisibility(View.GONE);
+        }else{
+            if (!TextUtils.isEmpty(displayName)) {
+                tv.setText(displayName);
+            }
+        }
+
+    }
+    private void setUpDisplayEmail(LinearLayout linearLayout,TextView tv, Contact contact) {
+        String displayName = contact.getC_mail();
+        if (contact.getC_mail() == null){
+            linearLayout.setVisibility(View.GONE);
+        }else{
+            if (!TextUtils.isEmpty(displayName)) {
+                tv.setText(displayName);
+            }
+        }
+    }
+
+    private void setUpDisplayOuverture(TextView tv, Contact contact) {
+        String displayName = contact.getC_ouverture();
         if (!TextUtils.isEmpty(displayName)) {
             tv.setText(displayName);
         }
     }
-    private void setUpDisplayEmail(TextView tv, Contact contact) {
-        String displayName = contact.getC_mail();
+    private void setUpDisplayFermeture(TextView tv, Contact contact) {
+        String displayName = contact.getC_fermeture();
         if (!TextUtils.isEmpty(displayName)) {
             tv.setText(displayName);
         }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNomPrenom;
+        TextView txtNomPrenom,txtOuverture;
         TextView txtAdresse,txtADRESSE;
-        TextView txtTaffe;
+        TextView txtTaffe,txtFermeture;
         TextView txtPhone,txtPHONE;
         TextView txtEmail,txtEMAIL;
         ImageButton btnAppel,btnMessage;
+        LinearLayout linearLayoutEmail;
+        LinearLayout linearLayoutPhone;
 
         public ViewHolder(View view) {
             super(view);
@@ -161,6 +189,11 @@ public class AnnuaireAdapter extends RecyclerView.Adapter<AnnuaireAdapter.ViewHo
             txtEMAIL = (TextView) view.findViewById(R.id.txtEmail);
             btnAppel = (ImageButton) view.findViewById(R.id.btnAppel);
             btnMessage = (ImageButton) view.findViewById(R.id.btnMessage);
+            txtOuverture = (TextView) view.findViewById(R.id.txtOuverture);
+            txtFermeture = (TextView) view.findViewById(R.id.txtFermeture);
+            txtADRESSE = (TextView) view.findViewById(R.id.txtAdresse);
+            linearLayoutEmail = (LinearLayout) view.findViewById(R.id.linearEmail);
+            linearLayoutPhone = (LinearLayout) view.findViewById(R.id.linearPhone);
         }
     }
 
