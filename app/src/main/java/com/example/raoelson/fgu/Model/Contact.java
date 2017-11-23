@@ -23,9 +23,18 @@ public class Contact {
     private String c_type;
     private String 	c_ouverture;
     private String 	c_fermeture;
+    private Integer favoris;
 
 
     public Contact() {
+    }
+
+    public Integer getFavoris() {
+        return favoris;
+    }
+
+    public void setFavoris(Integer favoris) {
+        this.favoris = favoris;
     }
 
     public String getC_nom() {

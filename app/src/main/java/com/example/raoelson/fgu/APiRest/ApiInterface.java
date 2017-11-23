@@ -3,6 +3,7 @@ package com.example.raoelson.fgu.APiRest;
 
 import com.example.raoelson.fgu.Model.Compte;
 import com.example.raoelson.fgu.Model.Contact;
+import com.example.raoelson.fgu.Model.Favoris;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -33,7 +34,8 @@ public interface ApiInterface {
                                              @Field("filtre") String filtre,
                                              @Field("partenaire") String partenaire,
                                              @Field("longitude") String longitude,
-                                             @Field("latitude") String latitude);
+                                             @Field("latitude") String latitude,
+                                             @Field("user") String user);
 
     /*@POST("webandroid.php")*/
     @FormUrlEncoded
@@ -59,10 +61,20 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("compte/updateCompte")
     Call<String> getModification(@Field("email") String email,
-                                     @Field("password") String password,
-                                     @Field("nom") String nom,
-                                     @Field("prenom") String prenom,
-                                     @Field("id") String id,
-                                     @Field("adresse") String adresse,
-                                     @Field("civilite") String civilite);
+                                 @Field("password") String password,
+                                 @Field("nom") String nom,
+                                 @Field("prenom") String prenom,
+                                 @Field("id") String id,
+                                 @Field("adresse") String adresse,
+                                 @Field("civilite") String civilite);
+
+    @FormUrlEncoded
+    @POST("favoris/loadfavoris")
+    Call<List<Contact>> getFavories(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("favoris/updatefavoris")
+    Call<String> getModificationFavorie(@Field("user") String user,
+                                 @Field("contact") String contact,
+                                 @Field("action") String action);
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.raoelson.fgu.Model.Contact;
+import com.example.raoelson.fgu.Model.Favoris;
 import com.example.raoelson.fgu.Outils.Message;
 import com.google.gson.JsonObject;
 
@@ -31,6 +32,7 @@ public class ApiClient {
     public Retrofit getClient() {
         //String url = "http://10.0.3.2/FGU/";
         String url = "http://dev.startcheme.com/android/FGU/";
+        //String url = "http://192.168.88.23/FGU/";
         Retrofit retrofit = null;
         try {
             OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
@@ -73,10 +75,10 @@ public class ApiClient {
     }*/
 
     public Call<List<Contact>> affichageSeach(String id,String profession,String partenaire,
-                                              String longitude,String latitude) {
+                                              String longitude,String latitude,String user) {
         Retrofit retrofit = this.getClient();
         ApiInterface api = retrofit.create(ApiInterface.class);
-        return api.getContactNearSearch(id,profession,partenaire,longitude,latitude);
+        return api.getContactNearSearch(id,profession,partenaire,longitude,latitude,user);
     }
 
     public Call<JsonObject> getInscription(String nom, String prenom, String email, String password) {
@@ -104,4 +106,18 @@ public class ApiClient {
         ApiInterface api = retrofit.create(ApiInterface.class);
         return api.getModification(email, password, nom, prenom,id,adresse,civilite);
     }
+
+    public Call<List<Contact>> affichageFavoris(String id) {
+        Retrofit retrofit = this.getClient();
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        return api.getFavories(id);
+    }
+
+    public Call<String> getModificationFavorie(String user,String contact,String action) {
+        Retrofit retrofit = this.getClient();
+        ApiInterface api = retrofit.create(ApiInterface.class);
+        Log.d("test"," data dada "+"?user="+user +"&contact="+contact+"&longitude="+action);
+        return api.getModificationFavorie(user,contact,action);
+    }
+
 }

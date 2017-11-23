@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/myfab_main"
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:layout_gravity="bottom|end">
+
+    <View
+        android:id="@+id/myfab_shadow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@mipmap/fab_shadow"/>
+
+    <ImageButton
+        android:id="@+id/myfab_main_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/fab_selector"
+        android:src="@drawable/ic_add_white_24dp"
+        tools:targetApi="lollipop"/>
+
+</FrameLayout>

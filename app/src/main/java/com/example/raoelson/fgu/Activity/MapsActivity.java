@@ -324,7 +324,7 @@ public class MapsActivity extends AppCompatActivity implements
             mMap.setMyLocationEnabled(true);
         }
         mapWrapperLayout.init(mMap, getPixelsFromDp(this, 39 + 20));
-        infoButtonListener = new OnInfoWindowElemTouchListener(btnAppel,
+        /*infoButtonListener = new OnInfoWindowElemTouchListener(btnAppel,
                 getResources().getDrawable(R.color.colorActive),
                 getResources().getDrawable(R.color.colorActive)){
             @Override
@@ -396,7 +396,7 @@ public class MapsActivity extends AppCompatActivity implements
 
             }
         };
-        btnItinaire.setOnTouchListener(infoButtonListener);
+        btnItinaire.setOnTouchListener(infoButtonListener);*/
 
 
 
@@ -462,7 +462,7 @@ public class MapsActivity extends AppCompatActivity implements
     }
     public void AffichageResultat(String id,String profession){
         mMap.clear();
-        Call<List<Contact>> call = apiClient.affichageSeach(id,profession,"","","");
+        Call<List<Contact>> call = apiClient.affichageSeach(id,profession,"","","","");
         call.clone().enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {

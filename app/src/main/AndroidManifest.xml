@@ -25,6 +25,12 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.example.raoelson.fgu.permission.MAPS_RECEIVE" />
+    <supports-screens android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:anyDensity="true"
+        android:resizeable="true"/>
 
     <application
         android:allowBackup="true"

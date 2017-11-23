@@ -49,7 +49,7 @@
         android:layout_below="@id/column1"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:paddingBottom="1dp"
         android:paddingLeft="1dp"
         android:paddingRight="1dp">
@@ -90,12 +90,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         app:ael_interpolator="bounce"
-        app:ael_orientation="vertical"
-
-        android:gravity="center">
+        app:ael_orientation="vertical">
         <TextView
             android:id="@+id/one"
-
             android:layout_marginTop="10dp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"

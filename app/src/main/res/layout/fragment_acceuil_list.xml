@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/AppBarLayout"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/gmail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+            <ImageButton
+                android:id="@+id/btnGetPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/people_pointer" />
+            <LinearLayout
+                android:background="@drawable/rounded_cornerbtn"
+                android:layout_width="225dp"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="4dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginStart="15dp"
+                android:paddingTop="8dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                >
+                <com.example.autocomplete.PlacesAutocompleteTextView
+                    android:id="@+id/autocomplete_"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="@string/titre_recherche_ville"
+                    android:textColorHint="@color/colorText"
+                    android:background="@drawable/editback"
+                    android:textColor="#555555"
+                    app:pacv_languageCode="fr"
+                    app:pacv_resultType="no_type"
+                    app:pacv_googleMapsApiKey="@string/google_maps_api_key"
+                    app:pacv_adapterClass="com.example.raoelson.fgu.Adapter.PlacesAutocompleteAdapter"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/textRechercheVille"
+                    android:paddingLeft="5dp"
+                    android:maxLines="1"
+                    android:visibility="gone"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:hint="@string/titre_recherche_ville"
+                    android:textColorHint="@color/colorText"
+                    android:background="@drawable/editback"
+                    android:textColor="#555555"
+                    android:textSize="14sp" />
+                <android.support.v7.widget.AppCompatImageView
+                    style="@style/btn"
+                    android:id="@+id/btnRechercheVille"
+                    android:layout_width="24dp"
+                    android:background="@drawable/ic_search_black_24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:gravity="end"
+                android:id="@+id/linearPhone"
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="5dip">
+                <ImageButton
+                    android:id="@+id/btnMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:src="@mipmap/map_blanc" />
+                <ImageButton
+                    android:id="@+id/btnList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:src="@mipmap/list_desactive" />
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingRight="10dp"
+            android:id="@+id/layout1"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+            <LinearLayout
+                android:background="@drawable/rounded_cornerbtn"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="4dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                >
+                <EditText
+                    android:id="@+id/EditQuery"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:hint="@string/titre_recherche"
+                    android:textColorHint="@color/colorText"
+                    android:background="@drawable/editback"
+                    android:textColor="#555555"
+                    android:textSize="14sp" />
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/btnRecherche"
+                    style="@style/btn"
+                    android:layout_width="24dp"
+                    android:background="@drawable/ic_search_black_24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="5dp"
+                    />
+            </LinearLayout>
+            <include layout="@layout/layout_recherche"/>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/myrecyclerview"
+            android:layout_below="@+id/txtCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:scrollbars="none" />
+    </LinearLayout>
+
+
+
+
+   <!-- <android.support.v7.widget.RecyclerView
+        android:id="@+id/gmail_list"
+        android:layout_below="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+
+    <include layout="@layout/nested_fragment_accueil" />
+
+
+</android.support.design.widget.CoordinatorLayout>

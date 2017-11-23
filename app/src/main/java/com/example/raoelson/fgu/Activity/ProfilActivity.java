@@ -2,6 +2,7 @@ package com.example.raoelson.fgu.Activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -65,7 +66,7 @@ public class ProfilActivity extends AppCompatActivity {
                 R.array.civile, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCivile.setAdapter(adapter);
-        progressBar = new ProgressBar(this,"France Guichet Unique",
+        progressBar = new ProgressBar(this, "France Guichet Unique",
                 "Chargement en cours...");
         AffichageProfil();
         btn_modifier.setOnClickListener(new View.OnClickListener() {
@@ -80,15 +81,15 @@ public class ProfilActivity extends AppCompatActivity {
 
     }
 
-    public void updateCompte(){
+    public void updateCompte() {
         progressBar.Show();
-        Call<String> call = apiClient.getModification(id,nom.getText().toString(),
-                prenom.getText().toString(),email.getText().toString(),password.getText().toString(),
-                adresse.getText().toString(),spinnerCivile.getSelectedItem().toString());
+        Call<String> call = apiClient.getModification(id, nom.getText().toString(),
+                prenom.getText().toString(), email.getText().toString(), password.getText().toString(),
+                adresse.getText().toString(), spinnerCivile.getSelectedItem().toString());
         call.clone().enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(getApplicationContext(),"Votre profil a été bien modifié",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Votre profil a été bien modifié", Toast.LENGTH_SHORT).show();
                 progressBar.Dismiss();
             }
 
@@ -118,20 +119,26 @@ public class ProfilActivity extends AppCompatActivity {
 
     public void AffichageProfil() {
         progressBar.Show();
-        Call<Contact> call = apiClient.getProfil(id);
-        call.clone().enqueue(new Callback<Contact>() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onResponse(Call<Contact> call, Response<Contact> response) {
-                ChargementText(response.body());
-                progressBar.Dismiss();
-            }
+            public void run() {
+                Call<Contact> call = apiClient.getProfil(id);
+                call.clone().enqueue(new Callback<Contact>() {
+                    @Override
+                    public void onResponse(Call<Contact> call, Response<Contact> response) {
+                        ChargementText(response.body());
+                        progressBar.Dismiss();
+                    }
 
-            @Override
-            public void onFailure(Call<Contact> call, Throwable t) {
-                progressBar.Dismiss();
-                Log.d("test", " fail" + t.getMessage());
+                    @Override
+                    public void onFailure(Call<Contact> call, Throwable t) {
+                        progressBar.Dismiss();
+                        Log.d("test", " fail" + t.getMessage());
+                    }
+                });
             }
-        });
+        }, 3000);
     }
 
     public void ChargementText(Contact contact) {

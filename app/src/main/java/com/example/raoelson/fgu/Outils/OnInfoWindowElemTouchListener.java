@@ -11,6 +11,7 @@ import android.support.annotation.RequiresApi;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.CheckBox;
 
 import com.google.android.gms.maps.model.Marker;
 
@@ -66,6 +67,7 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
             pressed = true;
             handler.removeCallbacks(confirmClickRunnable);
             view.setBackground(bgDrawablePressed);
+
             if (marker != null)
                 marker.showInfoWindow();
         }
@@ -90,6 +92,7 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
         public void run() {
             if (endPress()) {
                 onClickConfirmed(view, marker);
+
             }
         }
     };

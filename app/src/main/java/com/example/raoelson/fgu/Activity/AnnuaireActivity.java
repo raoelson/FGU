@@ -136,7 +136,7 @@ public class AnnuaireActivity extends AppCompatActivity {
         } else {
             txtCount.setText(contactList.size() + " établissements trouvés");
         }
-        AnnuaireAdapter adapter = new AnnuaireAdapter(getBaseContext(), contactList);
+        AnnuaireAdapter adapter = new AnnuaireAdapter(getBaseContext(), contactList,null);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         adapter.notifyDataSetChanged();
@@ -144,7 +144,7 @@ public class AnnuaireActivity extends AppCompatActivity {
     }
 
     public void AfficheSearch(String id) {
-        Call<List<Contact>> call = apiClient.affichageSeach("",id,"","","");
+        Call<List<Contact>> call = apiClient.affichageSeach("",id,"","","","");
         call.clone().enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {

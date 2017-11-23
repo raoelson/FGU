@@ -15,4 +15,7 @@
     <string name="liste">LISTE</string>
 
     <string name="titre_recherche">Essayez Avocat, Banque, Assurance ...</string>
+    <string name="titre_recherche_ville">Tapez le nom de la  ville</string>
+    <string name="google_maps_api_key">AIzaSyDx2fVn9WFbyE8OzW5DlPtqLkmLl1PW2yg</string>
+
 </resources>

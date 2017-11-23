@@ -132,7 +132,7 @@ public class AnnuaireFragment extends Fragment {
         }else{
             txtCount.setText(contactList.size()+" établissements trouvés");
         }
-        AnnuaireAdapter adapter = new AnnuaireAdapter(getContext(),contactList);
+        AnnuaireAdapter adapter = new AnnuaireAdapter(getContext(),contactList,null);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         adapter.notifyDataSetChanged();

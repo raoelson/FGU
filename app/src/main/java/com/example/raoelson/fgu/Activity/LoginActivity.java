@@ -19,6 +19,7 @@ import android.widget.EditText;
 import com.example.raoelson.fgu.APiRest.ApiClient;
 import com.example.raoelson.fgu.APiRest.ApiInterface;
 import com.example.raoelson.fgu.Outils.Message;
+import com.example.raoelson.fgu.Outils.TypefaceUtil;
 import com.example.raoelson.fgu.R;
 import com.google.gson.JsonObject;
 
@@ -49,6 +50,7 @@ public class LoginActivity extends AppCompatActivity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "font/futura_book_font.ttf");
         setContentView(R.layout.activity_login);
         apiClient = new ApiClient(getApplicationContext());
         message = new Message(this);

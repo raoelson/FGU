@@ -2,10 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--<item
-        android:id="@+id/action_profil"
-        android:title="Mon profil"
-        android:icon="@drawable/email"
-        app:showAsAction="never" />-->
+        android:id="@+id/menu_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:title="Recherche ..."/>-->
     <item
         android:id="@+id/action_deconnexion"
         android:title="Déconnexion"
